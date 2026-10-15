@@ -11,8 +11,12 @@
     "types"
   ],
   "version": "0.1.0",
-  "publisher": "local",
+  "publisher": "terry-zhang",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Teamop/vscode-node-runtime-types.git"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
