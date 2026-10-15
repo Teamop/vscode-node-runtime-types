@@ -1,0 +1,106 @@
+{
+  "name": "vscode-node-runtime-types",
+  "displayName": "Node Runtime Types",
+  "icon": "icon.png",
+  "description": "Use Node.js 24.12+ type definitions that match the runtime to help VSCode with type checking and autocompletion for TypeScript files directly.",
+  "keywords": [
+    "node",
+    "nodejs",
+    "typescript",
+    "@types/node",
+    "types"
+  ],
+  "version": "0.1.0",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Testing",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "typescriptServerPlugins": [
+      {
+        "name": "node-runtime-types-plugin",
+        "enableForWorkspaceTypeScriptVersions": true
+      }
+    ],
+    "commands": [
+      {
+        "command": "nodeRuntimeTypes.runFile",
+        "title": "Run Current TypeScript File",
+        "category": "Node Runtime Types",
+        "icon": "$(play)"
+      },
+      {
+        "command": "nodeRuntimeTypes.debugFile",
+        "title": "Debug Current TypeScript File",
+        "category": "Node Runtime Types",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "nodeRuntimeTypes.refresh",
+        "title": "Refresh Runtime Types",
+        "category": "Node Runtime Types",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "nodeRuntimeTypes.showStatus",
+        "title": "Show Runtime Status",
+        "category": "Node Runtime Types"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "nodeRuntimeTypes.runFile",
+          "when": "nodeRuntimeTypes.supported && editorLangId == typescript",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "nodeRuntimeTypes.runFile",
+          "when": "editorLangId == typescript"
+        },
+        {
+          "command": "nodeRuntimeTypes.debugFile",
+          "when": "editorLangId == typescript"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Node Runtime Types",
+      "properties": {
+        "nodeRuntimeTypes.nodePath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute path to the Node.js executable for this workspace. Leave empty to use `node` on `PATH`. Type definitions are installed only when this runtime is Node.js 24.12 or newer.",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "test": "tsc -p . && node --test out/test/policy.test.js out/test/plugin.test.js out/test/typecheck.test.js out/test/tsserver.test.js"
+  },
+  "dependencies": {
+    "node-runtime-types-plugin": "file:plugin"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^6.0.0"
+  }
+}

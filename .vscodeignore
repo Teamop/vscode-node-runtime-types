@@ -1,0 +1,10 @@
+DEVELOPMENT.md
+src/**
+out/test/**
+**/*.map
+tsconfig.json
+.gitignore
+.vscode/**
+plugin/**
+!plugin/index.js
+!plugin/package.json

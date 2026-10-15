@@ -1,0 +1,8 @@
+{
+  "name": "node-runtime-types-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TypeScript server plugin that adds Node.js 24.12+ type definitions for the detected runtime.",
+  "main": "index.js",
+  "license": "MIT"
+}
